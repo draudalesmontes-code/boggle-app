@@ -1,0 +1,59 @@
+/* DictionaryPage.css*/
+
+/* Base font size */
+html {
+    font-size: 16px; /* 1rem = 16px */
+}
+
+/* Center the content vertically and horizontally */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f7f7f7;
+}
+
+/* Container for the table */
+.dictionary-container {
+    text-align: center;
+}
+
+/* Page title */
+.dictionary-container h1 {
+    margin-bottom: 1.25rem; /* 20px */
+    font-size: 2rem; /* 32px */
+}
+
+/* Table styling */
+.dictionary-container table {
+    border-collapse: collapse;
+    width: 60%;
+    max-width: 37.5rem; /* 600px */
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.1); /* 4px 10px shadow */
+}
+
+/* Table headers */
+.dictionary-container th {
+    padding: 0.625rem; /* 10px */
+    background-color: #a3e9f8;
+    color: white;
+    border: 0.0625rem solid #ddd; /* 1px */
+    font-size: 1rem; /* 16px */
+}
+
+/* Table cells */
+.dictionary-container td {
+    padding: 0.625rem; /* 10px */
+    border: 0.0625rem solid #ddd; /* 1px */
+    font-size: 1rem; /* 16px */
+}
+
+/* Alternating row colors */
+.dictionary-container tr:nth-child(even) {
+    background-color: #f2f2f2;
+}

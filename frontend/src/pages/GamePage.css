@@ -1,0 +1,409 @@
+/** Page layout, fixed to fill viewport and escape App.css root constraints */
+.game-page {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  text-align: left;
+}
+
+/** Sidebar */
+.game-sidebar {
+  width: 200px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #303E77 0%, #1f2f63 100%);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 16px;
+  gap: 8px;
+}
+
+/** Player avatar circle */
+.player-avatar {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  border: 3px solid rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 800;
+  font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
+  margin-bottom: 4px;
+}
+
+/** Avatar image */
+.player-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/** Player name */
+.player-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
+  margin: 0 0 20px;
+  text-align: center;
+  word-break: break-word;
+}
+
+/** Score card */
+.score-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 16px 28px;
+  gap: 4px;
+}
+
+.score-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  opacity: 0.7;
+}
+
+.score-value {
+  font-size: 3rem;
+  font-weight: 800;
+  font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
+  line-height: 1;
+}
+
+/** Main content area */
+.game-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  user-select: none; /* prevent text selection while dragging */
+}
+
+/** Current word preview shown above the grid */
+.word-preview {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 800;
+  font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
+  color: #303E77;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  min-height: 2.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.word-feedback--ok  { color: #16a34a; }
+.word-feedback--bad { color: #dc2626; }
+.word-feedback--dev { color: #6b7280; font-style: italic; }
+
+/** Boggle grid, always square */
+.boggle-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 12px;
+  width: min(52vh, 440px);
+  aspect-ratio: 1 / 1;
+}
+
+/** Board loading state – dims tiles and pulses while the board fetch is in flight */
+.boggle-grid--loading {
+  opacity: 0.45;
+  pointer-events: none;
+  animation: board-pulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes board-pulse {
+  from { opacity: 0.45; }
+  to   { opacity: 0.2;  }
+}
+
+/** Individual tile */
+.tile {
+  background: #ffffff;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(16, 24, 40, 0.1),
+              0 1px 3px rgba(16, 24, 40, 0.06);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.tile:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(48, 62, 119, 0.2);
+}
+
+/** Selected tile */
+.tile--selected {
+  background: #4a5fc1;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(48, 62, 119, 0.35);
+}
+
+.tile--selected .tile-letter {
+  color: #ffffff;
+}
+
+/** First tile in the current chain – slightly darker to mark the start */
+.tile--first {
+  background: #303E77;
+}
+
+.tile--first .tile-letter {
+  color: #ffffff;
+}
+
+/** Tile letter */
+.tile-letter {
+  font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+  font-weight: 800;
+  color: #303E77;
+  font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
+}
+
+/** Qu is two characters, shrink slightly so it fits the tile */
+.tile-letter--qu {
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+}
+
+/** Rules button in sidebar */
+.rules-btn {
+  margin-top: auto;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
+  padding: 8px 20px;
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+
+.rules-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/** Modal overlay */
+.rules-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+/** Modal card */
+.rules-modal {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 28px 32px;
+  width: min(480px, 90vw);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.rules-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.rules-modal-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
+  color: #303E77;
+  margin: 0;
+}
+
+.rules-modal-close {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  color: #6b7280;
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px;
+}
+
+.rules-modal-close:hover {
+  color: #303E77;
+}
+
+/** Rules list */
+.rules-modal-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  counter-reset: rule-counter;
+}
+
+.rules-modal-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 14px;
+  background: #f8f9ff;
+  border-radius: 10px;
+  border-left: 4px solid #4a5fc1;
+  counter-increment: rule-counter;
+}
+
+.rules-modal-item::before {
+  content: counter(rule-counter);
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #4a5fc1;
+  letter-spacing: 1px;
+}
+
+.rules-modal-heading {
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
+  color: #303E77;
+}
+
+.rules-modal-body {
+  font-size: 0.8rem;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+/** Results Modal Specifics */
+.results-modal-wide {
+  width: min(640px, 95vw);
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.results-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.column-title {
+  font-family: "Baloo 2", sans-serif;
+  font-size: 1rem;
+  color: #303E77;
+  border-bottom: 2px solid #f0f2ff;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.results-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.results-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 8px;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+  border-radius: 6px;
+}
+
+.results-item:nth-child(odd) {
+  background: #f8f9ff;
+}
+
+.loading-text {
+  text-align: center;
+  padding: 40px;
+  color: #6b7280;
+  font-style: italic;
+}
+
+/** Small divider label between sidebar sections */
+.sidebar-section-title {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.5;
+  margin-top: 4px;
+}
+
+/** Found words sidebar list */
+.found-words-container {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.found-words-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-right: 4px;
+}
+
+.found-word-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.found-word-text {
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+}
+
+.found-word-pts {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.empty-list-text {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  font-style: italic;
+  margin-top: 8px;
+}

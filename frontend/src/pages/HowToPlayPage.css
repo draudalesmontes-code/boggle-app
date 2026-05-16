@@ -1,0 +1,105 @@
+/** Full-viewport centered layout matching the app's blue theme */
+.htp-page {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #1f2f63 0%, #303E77 60%, #4a5fc1 100%);
+  padding: 24px;
+}
+
+/** Rules card */
+.htp-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 36px 40px;
+  max-width: 560px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+/** Back button */
+.htp-back {
+  background: none;
+  border: none;
+  color: #303E77;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 20px;
+  display: block;
+  transition: opacity 120ms ease;
+}
+
+.htp-back:hover {
+  opacity: 0.7;
+}
+
+/** Page title */
+.htp-title {
+  font-size: 2rem;
+  font-weight: 800;
+  font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
+  color: #303E77;
+  margin: 0 0 4px;
+}
+
+/** Subtitle */
+.htp-subtitle {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin: 0 0 28px;
+}
+
+/** Ordered rules list */
+.htp-rules {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  counter-reset: rule-counter;
+}
+
+/** Single rule row */
+.htp-rule {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px 16px;
+  background: #f8f9ff;
+  border-radius: 12px;
+  border-left: 4px solid #4a5fc1;
+  counter-increment: rule-counter;
+}
+
+.htp-rule::before {
+  content: counter(rule-counter);
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #4a5fc1;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+/** Rule heading */
+.htp-rule-heading {
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
+  color: #303E77;
+}
+
+/** Rule body */
+.htp-rule-body {
+  font-size: 0.85rem;
+  color: #4b5563;
+  line-height: 1.5;
+}

@@ -1,0 +1,239 @@
+#header-style {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  color: azure;
+  background-color: #303E77;
+  border-top-right-radius: 0.75rem;
+  border-top-left-radius: 0.75rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+}
+
+#header-style h1 {
+  margin: 0;
+  font-size: inherit;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal-box {
+  background: #ffffff;
+  border-radius: 0.75rem;
+  width: min(90vw, 42rem);
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 1.25rem 3.75rem rgba(0, 0, 0, 0.3);
+}
+
+/* Tabs */
+.modal-tabs {
+  display: flex;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.modal-tab {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
+  color: #6b7280;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: color 120ms ease, border-color 120ms ease;
+}
+
+.modal-tab:hover {
+  color: #303E77;
+}
+
+.modal-tab--active {
+  color: #303E77;
+  border-bottom-color: #303E77;
+}
+
+/* Board words tab */
+.modal-word-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 1.5rem;
+}
+
+.modal-word-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.modal-word-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.5rem;
+  background: #f0f2fb;
+  border-left: 4px solid #4a5fc1;
+}
+
+/* Comparison tab */
+.modal-comparison {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  overflow-y: auto;
+  padding: 1rem 1.5rem;
+}
+
+.modal-comparison-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.modal-comparison-title {
+  font-size: 0.8rem;
+  font-weight: 800;
+  font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.5rem;
+}
+
+.modal-comparison-title--found  { color: #16a34a; }
+.modal-comparison-title--missed { color: #dc2626; }
+
+.modal-comparison-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.modal-comparison-item--found,
+.modal-comparison-item--missed {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.5rem;
+}
+
+.modal-comparison-item--found {
+  background: #f0fdf4;
+  border-left: 4px solid #16a34a;
+}
+
+.modal-comparison-item--missed {
+  background: #fff5f5;
+  border-left: 4px solid #dc2626;
+}
+
+/* Shared word text and points */
+.modal-word-text {
+  font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+  font-weight: 600;
+  font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
+  color: #303E77;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.modal-comparison-item--missed .modal-word-text {
+  color: #dc2626;
+}
+
+.modal-word-pts {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #4a5fc1;
+}
+
+.modal-comparison-item--missed .modal-word-pts {
+  color: #dc2626;
+}
+
+.modal-empty {
+  color: #6b7280;
+  font-size: 0.875rem;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.modal-score-line {
+  margin: 0.25rem 0 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.modal-score-line strong {
+  color: #ffffff;
+}
+
+.modal-close-btn {
+  width: 100%;
+  padding: 0.875rem;
+  background: #4a5fc1;
+  color: #ffffff;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  font-weight: 700;
+  font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
+  border: none;
+  cursor: pointer;
+  transition: background 120ms ease;
+  flex-shrink: 0;
+}
+
+.modal-close-btn:hover {
+  background: #303E77;
+}
+
+.modal-footer {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.modal-footer-btn {
+  flex: 1;
+  padding: 0.875rem;
+  color: #ffffff;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  font-weight: 700;
+  font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
+  border: none;
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+
+.modal-footer-btn--home {
+  background: #6b7280;
+}
+
+.modal-footer-btn--home:hover {
+  background: #4b5563;
+}
+
+.modal-footer-btn--play-again {
+  background: #16a34a;
+}
+
+.modal-footer-btn--play-again:hover {
+  background: #15803d;
+}

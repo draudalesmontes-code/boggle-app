@@ -1,0 +1,224 @@
+/** Full-viewport centered layout */
+.home-page {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(160deg, #1f2f63 0%, #303E77 60%, #4a5fc1 100%);
+}
+
+/** Player avatar circle */
+.home-avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 3px solid rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.6rem;
+  font-weight: 800;
+  font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+/** Avatar image */
+.home-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/** Player name */
+.home-username {
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
+  color: #ffffff;
+  margin: 0 0 28px;
+}
+
+/** Button stack */
+.home-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 260px;
+}
+
+/** Base button */
+.home-btn {
+  width: 100%;
+  padding: 16px 0;
+  border: none;
+  border-radius: 16px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+}
+
+.home-btn:not(:disabled):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+}
+
+.home-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/** Primary — Play Solo */
+.home-btn--primary {
+  background: #ffffff;
+  color: #303E77;
+}
+
+/** Secondary — Rank, My Account */
+.home-btn--secondary {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+}
+
+.home-btn--close {
+  float: right;
+  background: rgba(255, 255, 255, 0.12);
+  color: #303E77;
+  height: 50px;
+  margin: 16px;
+  width: 50px;
+}
+
+.multiplayer-menu {
+  background: #ffffff;
+  border-radius: 16px;
+  height: 75%;
+  position: absolute;
+  width: 50%;
+}
+
+
+/* Open Games browser */
+.waiting-games {
+  width: 100%;
+  margin: 0.5rem 0;
+}
+
+.waiting-games__title {
+  font-family: "Baloo 2", "Nunito", "Fredoka", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  color: #1f2f63;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.4rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.waiting-games__status {
+  font-size: 0.85rem;
+  color: #1f2f63;
+  opacity: 0.5;
+  text-align: center;
+  margin: 0.25rem 0;
+}
+
+.waiting-games__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-height: 260px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+  padding-right: 4px;
+}
+
+.waiting-games__list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.waiting-games__list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.waiting-games__list::-webkit-scrollbar-thumb {
+  background: rgba(31, 47, 99, 0.2);
+  border-radius: 3px;
+}
+
+.waiting-games__list::-webkit-scrollbar-thumb:hover {
+  background: rgba(31, 47, 99, 0.4);
+}
+
+.waiting-games__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 14px;
+  border: 2px solid rgba(31, 47, 99, 0.15);
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(16, 24, 40, 0.06);
+}
+
+.waiting-games__info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.waiting-games__player {
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: #1f2f63;
+}
+
+.waiting-games__id {
+  font-size: 0.75rem;
+  color: #1f2f63;
+  opacity: 0.4;
+}
+
+.waiting-games__join-btn {
+  flex-shrink: 0;
+  padding: 8px 16px !important;
+  font-size: 0.85rem;
+  width: auto !important;
+  margin-top: 0 !important;
+  border-radius: 14px;
+  font-weight: 800;
+  border: none;
+  color: white;
+  background: linear-gradient(180deg, #6fd0ff 0%, #1aa7ff 100%);
+  box-shadow: 0 6px 12px rgba(26, 167, 255, 0.18);
+  transition: transform 120ms ease, filter 120ms ease, box-shadow 120ms ease;
+  cursor: pointer;
+}
+
+.waiting-games__join-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 14px rgba(26, 167, 255, 0.25);
+}
+
+.waiting-games__join-btn:disabled {
+  background: #bfc6d6;
+  box-shadow: none;
+  transform: none;
+  cursor: not-allowed;
+}
+
