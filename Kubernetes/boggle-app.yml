@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: boggle-app-deployment
+  labels:
+    app: boggle-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: boggle-app
+  template:
+    metadata:
+      labels:
+        app: boggle-app
+    spec:
+      containers:
+      - name: boggle-app
+        image: ${BOGGLE_IMAGE}
+        imagePullPolicy: ${IMAGE_PULL_POLICY}
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_DATASOURCE_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: boggle-secret
+              key: mysql_user
+        - name: SPRING_DATASOURCE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: boggle-secret
+              key: mysql_password
+        - name: SPRING_DATASOURCE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: boggle-db-config
+              key: boggle-url
+
+            
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: boggle-app-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: boggle-app
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+
+      

@@ -1,5 +1,5 @@
 services:
-  db:
+  boggle-db-service:
     image: mysql:8.0
     container_name: boggle-db
     environment:

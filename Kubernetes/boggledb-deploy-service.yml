@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: boggle-deployment
+  labels:
+    app: boggle
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: boggle
+  template:
+    metadata:
+      labels:
+        app: boggle
+    spec:
+      containers:
+      - name: boggledb
+        image: mysql:9.7.0
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: boggle-secret
+              key: mysql_user
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: boggle-secret
+              key: mysql_password
+        - name: MYSQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: boggle-secret
+              key: mysql_database
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: boggle-secret
+              key: mysql_root_password
+
+
+            
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: boggle-db-service
+spec:
+  selector:
+    app: boggle
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+
+      

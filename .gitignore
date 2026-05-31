@@ -1,2 +1,44 @@
+# General
+
+## Compressed folders
+*.zip
+*.tar.gz
+
+## Build files
+/build
+
+# Operating System-specific files
+
+## For MacOS users
+.DS_Store
+
+## For Windows users
+Thumbs.db
+
+## For Windows Subsystem for Linux (WSL) users
+*.Zone.Identifier
+
+# IDE settings
+
+## For Visual Studio Code users
+.vscode/
+## For IntelliJ IDEA users
+.idea/
+
+# Language-specific files
+
+## For Java
+*.class
+*.jar
+
+##SSH keys
+*.pub
 deploy_key
-deploy_key.pub
+
+# AWS
+*.pkg
+AWSCLIV2.pkg
+
+# Kubernetes env files
+Kubernetes/.env.local
+Kubernetes/.env.aws
