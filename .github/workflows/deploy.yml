@@ -109,7 +109,7 @@ jobs:
         run: aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name ${{ secrets.EKS_CLUSTER_NAME }}
       - name: Deploy to EKS
         env:
-          BOGGLE_IMAGE: ${{ needs.build-and-push.outputs.image }}
+          BOGGLE_IMAGE: ${{ secrets.ECR_REGISTRY }}/boggle-app:${{ github.sha }}
           IMAGE_PULL_POLICY: Always
         run: |
           echo "Deploying image: $BOGGLE_IMAGE"
