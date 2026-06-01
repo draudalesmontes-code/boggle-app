@@ -43,13 +43,16 @@ apiVersion: v1
 kind: Service
 metadata:
   name: boggle-app-service
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:us-east-2:323395045266:certificate/68f521f0-acdf-4c17-ac64-302a89d802b7
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
 spec:
   type: LoadBalancer
   selector:
     app: boggle-app
   ports:
     - protocol: TCP
-      port: 80
+      port: 443
       targetPort: 8080
 
       
