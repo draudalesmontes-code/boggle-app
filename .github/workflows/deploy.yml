@@ -113,7 +113,8 @@ jobs:
           IMAGE_PULL_POLICY: Always
         run: |
           echo "Deploying image: $BOGGLE_IMAGE"
-          kubectl apply -f Kubernetes/boggle-secret.yml
+          kubectl apply -f Kubernetes/secret-store.yml
+          kubectl apply -f Kubernetes/external-secret.yml
           kubectl apply -f Kubernetes/boggle-db-config.yml
           kubectl apply -f Kubernetes/boggledb-deploy-service.yml
           envsubst < Kubernetes/boggle-app.yml | kubectl apply -f -
