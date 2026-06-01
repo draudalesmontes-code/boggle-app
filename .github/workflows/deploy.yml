@@ -100,6 +100,11 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
+      - name: Install kubectl and envsubst
+        run: |
+          curl -LO "https://dl.k8s.io/release/$(curl -Ls https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+          chmod +x kubectl && sudo mv kubectl /usr/local/bin/
+          sudo apt-get install -y gettext-base
       - name: Update kubeconfig for EKS
         run: aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name ${{ secrets.EKS_CLUSTER_NAME }}
       - name: Deploy to EKS
@@ -107,6 +112,7 @@ jobs:
           BOGGLE_IMAGE: ${{ needs.build-and-push.outputs.image }}
           IMAGE_PULL_POLICY: Always
         run: |
+          echo "Deploying image: $BOGGLE_IMAGE"
           kubectl apply -f Kubernetes/boggle-secret.yml
           kubectl apply -f Kubernetes/boggle-db-config.yml
           kubectl apply -f Kubernetes/boggledb-deploy-service.yml
