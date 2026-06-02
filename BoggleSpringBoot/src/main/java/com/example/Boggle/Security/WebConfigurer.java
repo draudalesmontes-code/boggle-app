@@ -18,7 +18,7 @@ public class WebConfigurer implements WebMvcConfigurer {
         // Configure CORS repository; allow all api endpoints
         registry.addMapping("/**")
                 // Allow frontend port
-                .allowedOrigins("http://localhost:5173")
+                .allowedOrigins("http://localhost:5173", "https://bogglebuddies.xyz", "https://www.bogglebuddies.xyz")
                 // Allow get, post, and put requests
                 .allowedMethods("GET", "POST", "PUT","OPTIONS")
                 // Allow all headers
